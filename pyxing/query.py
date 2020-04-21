@@ -2,7 +2,7 @@ import win32com.client
 import pythoncom
 from pyxing import res
 import pandas
-
+import os.path.join as pathjoin
 
 class XAQueryEvents:
     def __init__(self):
@@ -31,7 +31,7 @@ class XAQuery:
         self.received = False
 
     def register_res(self, res_file):
-        res_path = "C:\\eBEST\\xingAPI\\Res\\" + res_file       # res file 기본 경로
+        res_path = pathjoin(r"C:\eBEST\xingAPI\Res", res_file)  # res file 기본 경로
         self.received = False                                   # res file이 등록된 경우 received 상태 초기화
         self.com_obj.ResFileName = res_path                     # res file 등록
 
@@ -54,7 +54,7 @@ class XAQuery:
     def block_request(self, *args, **kwargs):
         res_name = args[0]
         res_file = res_name + ".res"
-        res_path = "C:\\eBEST\\xingAPI\\Res\\" + res_file
+        res_path = pathjoin(r"C:\eBEST\xingAPI\Res", res_file)
         self.register_res(res_file)
 
         # res 파일 파싱
@@ -123,5 +123,3 @@ if __name__ == "__main__":
     print(dfs[0])
     df = dfs[0]
     df.to_excel("code.xlsx")
-
-
