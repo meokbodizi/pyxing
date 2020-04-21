@@ -2,7 +2,7 @@ import win32com.client
 import pythoncom
 from pyxing import res
 import pandas
-import os.path.join as pathjoin
+from os.path import join as pathjoin
 
 class XAQueryEvents:
     def __init__(self):
